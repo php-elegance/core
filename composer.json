@@ -12,7 +12,20 @@
     "psr-4": {
       "": "class/"
     },
-    "files": []
+    "files": [
+      "helper/constant/char_normalizer.php",
+      "helper/function/dbug.php",
+      "helper/function/env.php",
+      "helper/function/is.php",
+      "helper/function/jsonFile.php",
+      "helper/function/num.php",
+      "helper/function/path.php",
+      "helper/function/prepare.php",
+      "helper/function/remove_accents.php",
+      "helper/function/str.php",
+      "helper/function/url.php",
+      "helper/script/env.php"
+    ]
   },
   "require": {
     "php": "^8.1",
