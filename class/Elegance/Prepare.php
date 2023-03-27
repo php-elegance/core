@@ -61,10 +61,13 @@ abstract class Prepare
 
             return $value;
         } else {
+
             $paramns = explode(":", $tag);
 
             $function = array_shift($paramns);
-            $paramns = explode(",", array_shift($paramns));
+
+            $paramns = implode(":", $paramns);
+            $paramns = explode(",", $paramns);
 
             $function = self::getTagValue($function, $ppN, $ppR, false);
 
