@@ -7,12 +7,14 @@ abstract class Prepare
     /** Prepara um texto para ser exibido subistituindo ocorrencias do template */
     static function prepare(?string $string, array|string $prepare = []): string
     {
-        $string = strval($string ?? '');
-        if (!is_blank($string)) {
-            $tags = self::getPrepareTags($string);
-            if (!empty($tags)) {
-                $prepare = self::combinePrepare($prepare);
-                $string = self::resolve($string, $tags, $prepare);
+        if (!empty($prepare)) {
+            $string = strval($string ?? '');
+            if (!is_blank($string)) {
+                $tags = self::getPrepareTags($string);
+                if (!empty($tags)) {
+                    $prepare = self::combinePrepare($prepare);
+                    $string = self::resolve($string, $tags, $prepare);
+                }
             }
         }
         return $string;
