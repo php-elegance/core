@@ -1,0 +1,13 @@
+[#PHP]
+
+namespace [#namespace];
+
+use Elegance\MxCmd;
+
+abstract class [#class]
+{
+    static function __default()
+    {
+        MxCmd::echo('Comando [[#name]] funcionando');
+    }
+}

@@ -1,0 +1,12 @@
+<?php
+
+require "./vendor/autoload.php";
+
+echo "---< MXCMD >---\n\n";
+
+array_shift($argv);
+Elegance\MxCmd::run(implode(' ', $argv));
+
+echo "\n---< MXCMD >---\n";
+
+die;
