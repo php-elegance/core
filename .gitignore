@@ -4,3 +4,6 @@
 /index.php
 /.env
 /mx
+
+/library/certificate/*
+!/library/certificate/base.crt
