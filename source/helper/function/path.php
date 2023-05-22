@@ -27,7 +27,7 @@ if (!function_exists('path')) {
 if (!function_exists('ipath')) {
 
     /** Retorno o caminho para o arquivo que chamou esta helper */
-    function ipath(int $limit): string
+    function ipath(int $limit = 1): string
     {
         $path = debug_backtrace(2, $limit);
         $path = array_pop($path);
