@@ -1,4 +1,4 @@
-### Prepare
+# Prepare
 
 A classe prepara strings para serem exibidas ao usuário, adicionando valores conforme um template definido.
 

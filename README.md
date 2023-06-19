@@ -11,7 +11,7 @@ Núcleo para funcionamento de aplicações Elegance
 **Classes**
 
 - [cif-code](https://github.com/php-elegance/core/tree/main/.doc/class/cif-code.md)
-- [dif](https://github.com/php-elegance/core/tree/main/.doc/class/dif.md)
+- [dir](https://github.com/php-elegance/core/tree/main/.doc/class/dir.md)
 - [env](https://github.com/php-elegance/core/tree/main/.doc/class/env.md)
 - [file](https://github.com/php-elegance/core/tree/main/.doc/class/file.md)
 - [import](https://github.com/php-elegance/core/tree/main/.doc/class/import.md)
