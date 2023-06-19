@@ -1,7 +1,5 @@
 <?php
 
-use Elegance\Request;
-
 if (!function_exists('build_url')) {
 
     /** Cria uma string de URL basando-se em um array parse_url */
