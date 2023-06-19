@@ -1,4 +1,4 @@
-# Elegance
+# CORE
 
 Núcleo para funcionamento de aplicações Elegance
 
