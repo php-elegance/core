@@ -1,4 +1,4 @@
-### Constant
+# Constant
 
 
 **NORMAL_CHAR**: Array de caracteres especiais com os respectivos caracteres normais

@@ -1,4 +1,4 @@
-### Config
+# Config
 
 
 **CIF**: Arquivo que deve ser utilizado para cifras
