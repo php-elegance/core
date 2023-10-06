@@ -23,7 +23,8 @@
             "source/helper/function/prepare.php",
             "source/helper/function/remove_accents.php",
             "source/helper/function/str.php",
-            "source/helper/script/env.php"
+            "source/helper/script/env.php",
+            "source/helper/script/show_error.php"
         ]
     },
     "require": {
