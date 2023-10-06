@@ -10,12 +10,11 @@ Uma variavel de ambiente pode ser recuperada utilizando a helper **env**
 
 ---
 
-
 **loadFile**: Carrega variaveis de ambiente de um arquivo para o sistema
 
     Env::loadFile(string $filePath): bool
     
-> O arquivo .env na raiz do seu projeto é importado automaticamente
+> Os arquivos .env e .conf na raiz do seu projeto são importados automaticamente
 
 ---
 
