@@ -10,11 +10,11 @@
 
     SHOW_ERROR = false
 
-## Constants
+## Constant
 
  - **NORMAL_CHAR**: Array de caracteres especiais com os respectivos caracteres normais
 
-## Functions
+## Function
     
 **dbug**: Realiza o var_dump de variaveis
 
