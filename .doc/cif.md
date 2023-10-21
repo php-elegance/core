@@ -12,7 +12,7 @@ Para criar um arquivo de certificado em seu projeto
 
     php mx crete.cif nomeDoCertificado
 
-> Todos os certifiados de cifra, devem estar em **source/data/certificate**
+> Todos os certifiados de cifra, devem estar em **source/certificate**
 
 Para utilizar este certificado em seu projeto, adicione a linha em seu .env
 
