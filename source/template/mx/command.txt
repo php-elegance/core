@@ -1,0 +1,9 @@
+<?php
+
+namespace Elegance;
+
+// php mx [#name]
+
+return function(){
+    Terminal::echo('Comando [[#name]] funcionando');
+};

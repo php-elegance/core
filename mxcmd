@@ -1,0 +1,11 @@
+<?php
+
+echo "-<[ MX-CMD ]>-\n\n";
+
+copy(dirname(__FILE__) . '/source/template/mx/install.txt', './mx');
+
+echo "Arquivo instalado\n";
+
+echo "Pode ser utilizado com o comando [php mx]\n";
+
+echo "\n-<[ MX-CMD ]>-\n";
