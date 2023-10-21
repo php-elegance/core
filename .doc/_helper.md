@@ -1,6 +1,47 @@
 # Helpers
 
+## Command
+
+**cif.on**: Aplica a cifra em um valor informado
+
+    php cif.on valor
+
+**cif.off**: Remove a cifra de um valor informado
+
+    php cif.off valor
+**code.on**: Aplica a codificação em um valor informado
+
+    php code.on valor
+
+**code.off**: Remove a codificação de um valor informado
+
+    php code.off valor
+
+**composer**: Atualiza as dependencias e helpers do arquivo **composer.json**
+
+    php mx composer
+
+**create.cif**: Cria um arquivo de certificado para o projeto
+
+    php cif.create nomeDoCertificado
+
+**create.command**: Cria um arquivo de comando em **source/command**
+
+    php mx create.command [command]
+
+**logo**: Mostra a logo do Mx-cmd (chamado por padrão)
+
+    php mx logo
+
 ## Config
+
+**CIF**: Arquivo que deve ser utilizado para cifras
+
+    CIF = null
+
+**CODE**: Chave para codificação
+
+    CODE = null
 
 **DEV**: Se o ambiente é de desenvolvimento
 
@@ -11,6 +52,8 @@
     SHOW_ERROR = false
 
 ## Constant
+
+ - **IS_TERMINAL**: Se a requisição foi feita via terminal
 
  - **NORMAL_CHAR**: Array de caracteres especiais com os respectivos caracteres normais
 
