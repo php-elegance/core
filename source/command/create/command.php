@@ -12,7 +12,7 @@ return function ($commandName) {
     $command = str_replace('.', '/', $command);
     $command = path("$command.php");
 
-    $template = path("#elegance-mx/source/template/mx/command.txt");
+    $template = path("#elegance-core/source/template/mx/command.txt");
     $template = Import::content($template);
     $template = prepare($template, ['name' => $name]);
 
