@@ -46,6 +46,7 @@ abstract class Cif
             return $var;
 
         if ($key !== false) {
+            _logSection('cif-on');
 
             $key = ($key !== null && $key !== true)
                 ? self::get_key_char(substr("$key", 0, 1))
@@ -66,6 +67,8 @@ abstract class Cif
             $stringCif = str_replace('/', '-', $stringCif);
 
             $stringCif = "-$stringCif-";
+
+            _logSection();
         }
 
         return $stringCif ?? $var;
@@ -82,6 +85,8 @@ abstract class Cif
         if (!self::check($var))
             return $var;
 
+        _logSection('cif-off');
+
         $key = self::get_key_char(substr($var, 1, 1));
 
         $var = substr($var, 2, -2);
@@ -93,6 +98,8 @@ abstract class Cif
         $var = base64_decode(strrev($var));
 
         $var = unserialize($var);
+
+        _logSection();
 
         return $var;
     }

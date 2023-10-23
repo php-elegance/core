@@ -41,12 +41,14 @@ abstract class Code
         self::load();
 
         if (!self::check($var)) {
+            _logSection('code-on');
             if (!is_md5($var))
                 $var = md5(is_stringable($var) ? "$var" : serialize($var));
             $in = str_split('1234567890abcdef');
             $out = self::$key;
             $var = str_replace($in, $out, $var);
             $var = self::$preKey . $var . self::$posKey;
+            _logSection();
         }
 
         return $var;
@@ -60,9 +62,14 @@ abstract class Code
         if (!self::check($var))
             return self::off(self::on($var));
 
+        _logSection('code-off');
+
         $in = str_split('1234567890abcdef');
         $out = self::$key;
         $var = str_replace($out, $in, substr($var, 1, -1));
+
+        _logSection();
+
         return $var;
     }
 

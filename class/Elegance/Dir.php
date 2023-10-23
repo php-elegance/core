@@ -10,6 +10,7 @@ abstract class Dir
         $path = self::getOnly($path);
 
         if (!is_dir($path)) {
+            _logSection('dir create', $path);
             $createList = explode('/', $path);
             $createPath = '';
             foreach ($createList as $creating) {
@@ -18,6 +19,7 @@ abstract class Dir
                     mkdir($createPath);
                 }
             }
+            _logSection();
             return is_dir($path);
         }
         return null;
@@ -29,6 +31,7 @@ abstract class Dir
         $path = self::getOnly($path);
 
         if (is_dir($path)) {
+            _logSection('dir remove', $path);
             if ($recursive || empty(self::seek_for_all($path))) {
                 $drop = function ($path, $function) {
                     foreach (scandir($path) as $iten) {
@@ -44,6 +47,7 @@ abstract class Dir
                 };
                 $drop($path, $drop);
             }
+            _logSection();
             return !is_dir($path);
         }
         return null;
@@ -53,6 +57,7 @@ abstract class Dir
     static function copy(string $path_from, string $path_for, bool $replace = false): ?bool
     {
         if (self::check($path_from)) {
+            _logSection('dir copy', "$path_from => $path_for");
             self::create($path_for);
             $copy = function ($from, $for, $replace, $function) {
                 foreach (self::seek_for_dir($from) as $dir) {
@@ -63,6 +68,7 @@ abstract class Dir
                 }
             };
             $copy($path_from, $path_for, $replace, $copy);
+            _logSection();
             return true;
         }
         return null;
@@ -72,9 +78,12 @@ abstract class Dir
     static function move(string $path_from, string $path_for): ?bool
     {
         if (!self::check($path_for) && self::check($path_from)) {
+            _logSection('dir move', "$path_from => $path_for");
             $path_from = path($path_from);
             $path_for = path($path_for);
-            return boolval(rename($path_from, $path_for));
+            $status = boolval(rename($path_from, $path_for));
+            _logSection();
+            return $status;
         }
         return null;
     }

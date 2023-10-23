@@ -19,12 +19,14 @@
             "helper/function/env.php",
             "helper/function/is.php",
             "helper/function/jsonFile.php",
+            "helper/function/log.php",
             "helper/function/num.php",
             "helper/function/path.php",
             "helper/function/prepare.php",
             "helper/function/remove_accents.php",
             "helper/function/str.php",
             "helper/script/env.php",
+            "helper/script/log.php",
             "helper/script/path.php",
             "helper/script/show_error.php"
         ]

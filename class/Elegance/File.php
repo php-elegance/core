@@ -8,11 +8,13 @@ abstract class File
     static function create(string $path, string $content, bool $recreate = false): ?bool
     {
         if ($recreate || !self::check($path)) {
+            _logSection('file create', $path);
             $path = path($path);
             Dir::create($path);
             $fp = fopen($path, 'w');
             fwrite($fp, $content);
             fclose($fp);
+            _logSection();
             return true;
         }
         return null;
@@ -22,8 +24,10 @@ abstract class File
     static function remove(string $path): ?bool
     {
         if (self::check($path)) {
+            _logSection('file removed', $path);
             $path = path($path);
             unlink($path);
+            _logSection();
             return !is_file($path);
         }
         return null;
@@ -34,8 +38,11 @@ abstract class File
     {
         if ($recreate || !self::check($path_for)) {
             if (self::check($path_from)) {
+                _logSection('file copy', "$path_from => $path_for");
                 Dir::create($path_for);
-                return boolval(copy(path($path_from), path($path_for)));
+                $status = boolval(copy(path($path_from), path($path_for)));
+                _logSection();
+                return $status;
             }
         }
         return null;
@@ -46,8 +53,11 @@ abstract class File
     {
         if ($replace || !self::check($path_for)) {
             if (self::check($path_from)) {
+                _logSection('file move', "$path_from => $path_for");
                 Dir::create($path_for);
-                return boolval(rename(path($path_from), path($path_for)));
+                $status = boolval(rename(path($path_from), path($path_for)));
+                _logSection();
+                return $status;
             }
         }
         return null;

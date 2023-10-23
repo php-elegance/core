@@ -8,6 +8,7 @@ abstract class Prepare
     static function prepare(?string $string, array|string $prepare = []): string
     {
         if (!empty($prepare)) {
+            _logSection('prepare');
             $string = strval($string ?? '');
             if (!is_blank($string)) {
                 $tags = self::getPrepareTags($string);
@@ -16,6 +17,7 @@ abstract class Prepare
                     $string = self::resolve($string, $tags, $prepare);
                 }
             }
+            _logSection();
         }
         return $string;
     }
