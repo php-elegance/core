@@ -13,11 +13,7 @@ abstract class Import
         $filePath = path($filePath);
         $filePath = File::setEx($filePath, 'php');
         try {
-            _logSection('import-only', $filePath);
-
             $once ? require_once $filePath : require $filePath;
-
-            _logSection();
             return true;
         } catch (Exception | Error) {
             return false;
@@ -27,16 +23,9 @@ abstract class Import
     /** Retorna o conteúdo de um aquivo */
     static function content(string $filePath, string|array $prepare = []): string
     {
-        _logSection('import-content', $filePath);
-
         $filePath = path($filePath);
-
         $content = File::check($filePath) ? file_get_contents($filePath) : '';
-
         $return = Prepare::prepare($content, $prepare);
-
-        _logSection();
-
         return $return;
     }
 
@@ -47,9 +36,6 @@ abstract class Import
         $filePath = File::setEx($filePath, 'php');
 
         if (File::check($filePath)) {
-
-            _logSection('import-return', $filePath);
-
             $return = function ($__FILEPATH__, &$__PARAMS__) {
                 foreach (array_keys($__PARAMS__) as $__KEY__)
                     if (!is_numeric($__KEY__))
@@ -61,8 +47,6 @@ abstract class Import
             };
 
             $return = $return($filePath, $params);
-
-            _logSection();
         }
 
         return $return ?? null;
@@ -75,9 +59,6 @@ abstract class Import
         $filePath = File::setEx($filePath, 'php');
 
         if (File::check($filePath)) {
-
-            _logSection('import-var', $filePath);
-
             $return = function ($__FILEPATH__, $__VARNAME__, &$__PARAMS__) {
                 foreach (array_keys($__PARAMS__) as $__KEY__)
                     if (!is_numeric($__KEY__))
@@ -90,8 +71,6 @@ abstract class Import
             };
 
             $return = $return($filePath, $varName, $params);
-
-            _logSection();
         }
 
         return $return ?? null;
@@ -103,9 +82,6 @@ abstract class Import
         $filePath = path($filePath);
 
         if (File::check($filePath)) {
-
-            _logSection('import-output', $filePath);
-
             $return = function ($__FILEPATH__, &$__PARAMS__) {
                 foreach (array_keys($__PARAMS__) as $__KEY__)
                     if (!is_numeric($__KEY__))
@@ -115,10 +91,7 @@ abstract class Import
                 $__RETURN__ = ob_get_clean();
                 return $__RETURN__;
             };
-
             $return = $return($filePath, $params);
-
-            _logSection();
         }
 
         return $return ?? '';
