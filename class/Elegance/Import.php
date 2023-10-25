@@ -2,9 +2,6 @@
 
 namespace Elegance;
 
-use Error;
-use Exception;
-
 abstract class Import
 {
     /** Importa um arquivo PHP */
@@ -12,12 +9,11 @@ abstract class Import
     {
         $filePath = path($filePath);
         $filePath = File::setEx($filePath, 'php');
-        try {
-            $once ? require_once $filePath : require $filePath;
-            return true;
-        } catch (Exception | Error) {
-            return false;
-        }
+
+        if (File::check($filePath))
+            return $once ? require_once $filePath : require $filePath;
+
+        return false;
     }
 
     /** Retorna o conteúdo de um aquivo */
