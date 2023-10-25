@@ -17,7 +17,7 @@ return new class
 
         $composer['autoload']['psr-4'][''] = path('class/');
 
-        $autoImport = path('helper');
+        $autoImport = path('source/helper');
 
         $files = [];
 
