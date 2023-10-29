@@ -7,12 +7,93 @@ use Error;
 abstract class Cif
 {
     protected static array $ensure;
-    protected static string $currentKey;
+    protected static ?int $currentIdKey = null;
     protected static ?array $cif = null;
 
     final const BASE = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
-    protected static function load()
+    /** Retorna a cifra de uma variavel */
+    static function on(mixed $var, ?string $charKey = null): string
+    {
+        self::loadCtfFile();
+
+        if (
+            is_string($var)
+            && str_starts_with($var, '-')
+            && str_ends_with($var, '-')
+            && self::checkEncapsChar(substr($var, 1, -1))
+        ) return $var;
+
+        $idKey = self::getUseIdKey($charKey);
+
+        $var = serialize($var);
+
+        $var = base64_encode($var);
+
+        $var = str_replace('=', '', $var);
+
+        $var = strrev($var);
+
+        $var = self::replace($var, self::BASE, self::$cif[$idKey]);
+
+        $var = self::getEncapsChar($idKey) . $var . self::getEncapsChar($idKey, true);
+
+        $var = str_replace('/', '-', $var);
+        $var = "-$var-";
+
+        return $var;
+    }
+
+    /** Retorna a variavel de uma cifra */
+    static function off(mixed $var): mixed
+    {
+        if (!self::check($var)) return $var;
+
+        if (strpos($var, ' ') !== false) $var = urlencode($var);
+
+        $key = self::getUseIdKey(substr($var, 1, 1));
+
+        $var = substr($var, 2, -2);
+
+        $var = str_replace('-', '/', $var);
+
+        $var = self::replace($var, self::$cif[$key], self::BASE);
+
+        $var = base64_decode(strrev($var));
+
+        $var = unserialize($var);
+
+        return $var;
+    }
+
+    /** Verifica se uma variavel atende os requisitos para ser uma cifra */
+    static function check(mixed $var): bool
+    {
+        if (func_num_args() > 1) {
+            $check = true;
+            foreach (func_get_args() as $v)
+                $check = $check && self::check($v);
+            return $check && self::compare(...func_get_args());
+        }
+
+        return $var == self::on($var);
+
+        return false;
+    }
+
+    /** Verifica se todas as variaveis tem a mesma cifra */
+    static function compare(mixed $initial, mixed ...$compare): bool
+    {
+        $result = true;
+
+        while ($result && count($compare))
+            $result = boolval(self::off($initial) == self::off(array_shift($compare)));
+
+        return $result;
+    }
+
+    /** Carrega o arquivo de certificado do projeto */
+    protected static function loadCtfFile()
     {
         if (is_null(self::$cif)) {
             $certificate = env('CIF');
@@ -37,102 +118,6 @@ abstract class Cif
         }
     }
 
-    /** Retorna a cifra de uma variavel */
-    static function on(mixed $var, ?string $key = null): string
-    {
-        self::load();
-
-        if (self::check($var))
-            return $var;
-
-        if ($key !== false) {
-
-            $key = ($key !== null && $key !== true)
-                ? self::get_key_char(substr("$key", 0, 1))
-                : self::get_key();
-
-            $stringCif = serialize($var);
-
-            $stringCif = base64_encode($stringCif);
-
-            $stringCif = str_replace('=', '', $stringCif);
-
-            $stringCif = strrev($stringCif);
-
-            $stringCif = self::replace($stringCif, self::BASE, self::$cif[$key]);
-
-            $stringCif = self::get_char_key($key) . $stringCif . self::get_char_key($key, true);
-
-            $stringCif = str_replace('/', '-', $stringCif);
-
-            $stringCif = "-$stringCif-";
-        }
-
-        return $stringCif ?? $var;
-    }
-
-    /** Retorna a variavel de uma cifra */
-    static function off(mixed $var): mixed
-    {
-        self::load();
-
-        if (strpos($var, ' ') !== false)
-            $var = urlencode($var);
-
-        if (!self::check($var))
-            return $var;
-
-        $key = self::get_key_char(substr($var, 1, 1));
-
-        $var = substr($var, 2, -2);
-
-        $var = str_replace('-', '/', $var);
-
-        $var = self::replace($var, self::$cif[$key], self::BASE);
-
-        $var = base64_decode(strrev($var));
-
-        $var = unserialize($var);
-
-        return $var;
-    }
-
-    /** Verifica se uma variavel atende os requisitos para ser uma cifra */
-    static function check(mixed $var): bool
-    {
-        self::load();
-
-        if (func_num_args() > 1) {
-            $check = true;
-
-            foreach (func_get_args() as $v)
-                $check = $check && self::check($v);
-
-            return $check && self::compare(...func_get_args());
-        }
-
-        if (is_string($var))
-            if (is_base64($var))
-                if (substr($var, 0, 1) == '-')
-                    if (substr($var, -1) == '-') {
-                        $key = self::get_key_char(substr($var, 1, 1));
-                        return substr($var, -2, 1) == self::get_char_key($key, true);
-                    }
-
-        return false;
-    }
-
-    /** Verifica se todas as variaveis tem a mesma cifra */
-    static function compare(mixed $initial, mixed ...$compare): bool
-    {
-        $result = true;
-
-        while ($result && count($compare))
-            $result = boolval(self::off($initial) == self::off(array_shift($compare)));
-
-        return $result;
-    }
-
     /** Realiza o replace interno de uma string */
     protected static function replace(string $string, string $in, string $out): string
     {
@@ -143,28 +128,31 @@ abstract class Cif
         return $string;
     }
 
-    /** Retorna uma chave */
-    protected static function get_key(bool $random = true): string
+    /** Retorna o id que deve ser utilizado */
+    protected static function getUseIdKey(?string $charKey): int
     {
-        if ($random) {
-            return random_int(0, 61);
-        } else {
-            self::$currentKey = self::$currentKey ?? random_int(0, 61);
-            return self::$currentKey;
-        }
+        self::loadCtfFile();
+
+        self::$currentIdKey = self::$currentIdKey ?? random_int(0, 61);
+
+        if (!is_null($charKey))
+            $idKey = array_flip(self::$ensure)[substr($charKey, 0, 1)];
+
+        return $idKey ?? self::$currentIdKey;
     }
 
-    /** Retorna a chave de um caracter */
-    protected static function get_key_char(string $char): string
+    /** Retorna o caracter de encapsulamento */
+    protected static function getEncapsChar(int $idKey, bool $reverse = false): string
     {
-        return array_flip(self::$ensure)[$char] ?? 0;
+        if ($reverse) $idKey = 61 - $idKey;
+        $charKey = self::$ensure[$idKey] ?? 0;
+        return $charKey;
     }
 
-    /** Retorna o caracter de uma chave */
-    protected static function get_char_key(string $key, bool $inverse = false): string
+    /** Verifica os caracteres de encapsulamento de uma string */
+    protected static function checkEncapsChar(string $string)
     {
-        $key = $inverse ? 61 - $key : $key;
-        $key = self::$ensure[$key] ?? 0;
-        return $key;
+        $idCharKeyStart = self::getUseIdKey(substr($string, 0, 1));
+        return self::getEncapsChar($idCharKeyStart, true) == substr($string, -1, 1);
     }
 }
