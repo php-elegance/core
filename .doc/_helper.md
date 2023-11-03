@@ -127,6 +127,10 @@
 
     is_httpStatus($var): bool
 
+**is_serialized**: Verifica se uma variavel corresponde uma string serializada
+
+    is_serialized($var, $strict = true): bool
+
 **jsonFile**: Manipula arquivos JSON
 
     jsonFile(string $file, array $value = [], bool $merge = false): array
