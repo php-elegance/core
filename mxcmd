@@ -2,7 +2,7 @@
 
 echo "-<[ MX-CMD ]>-\n\n";
 
-copy(dirname(__FILE__) . '/src/template/mx/install.txt', './mx');
+copy(dirname(__FILE__) . '/front/template/mx/install.txt', './mx');
 
 echo "Arquivo instalado\n";
 
