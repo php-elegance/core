@@ -25,6 +25,6 @@ Se tudo estiver funcionando, uma logo **MX-CMD** vai aparecer.
 - [file](https://github.com/php-elegance/core/blob/main/.doc/file.md)
 - [import](https://github.com/php-elegance/core/blob/main/.doc/import.md)
 - [mime](https://github.com/php-elegance/core/blob/main/.doc/mime.md)
+- [mx](https://github.com/php-elegance/core/blob/main/.doc/mx.md)
 - [path](https://github.com/php-elegance/core/blob/main/.doc/path.md)
 - [prepare](https://github.com/php-elegance/core/blob/main/.doc/prepare.md)
-- [terminal](https://github.com/php-elegance/core/blob/main/.doc/terminal.md)

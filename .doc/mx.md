@@ -1,4 +1,4 @@
-# Terminal
+# Mx
 Abre um projeto Elegance para utilizaçao via terminal
 
 ### Instalação
@@ -8,7 +8,7 @@ Utilize os comandos abaixo para preparar o projeto para o terminal
 
 ### Testando
 
-Para testar o funcionamento do **terminal**, execute o comando no terminal
+Para testar o funcionamento do **mx**, execute o comando no mx
 
     php mx
 
@@ -20,14 +20,14 @@ Todo comando no terminal deve iniciar com **php mx**
 
     php mx [comando] [parametros]
 
-Um **comando** é um arquivo que retorna um metodo que será executado no terminal. 
-Para acessar o arquivo, separe os diretórios com **.** (ponto)
+Um **comando** é uma classe com o metodo **__invoke** que será executado no terminal. 
+Uma classe de comando deve obrigatóriamente extender a classe **\Mx\Mx**
 
-    php mx [command]
+    php mx [command] // MxCommand
 
-    php mx [path].[command]
+    php mx [prefix].[command] // MxPrefixCommand
 
-    php mx [path].[path].[command]
+    php mx [prefix].[prefix].[command] // MxPrefixPrefixCommand
 
 ### Criando comandos
 
@@ -35,7 +35,7 @@ Você pode criar uma comando automáticamente utilizando o comando **mx create.c
 
     php mx create.command [nome do comando]
 
-Isso vai criar um arquivo de comando dentro do diretório **src/command** de seu projeto
+Isso vai criar um arquivo de comando dentro do diretório **source/Mx** de seu projeto
 
 Para criar e testar um comando utilize as linhas abaixo no terminal
 

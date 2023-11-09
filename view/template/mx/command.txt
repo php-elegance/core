@@ -1,9 +1,11 @@
 <?php
 
-// php mx [#name]
+namespace Mx;
 
-use Elegance\Core\Terminal;
-
-return function(){
-    Terminal::echo('Comando [[#name]] funcionando');
-};
+class [#class] extends Mx
+{
+    function __invoke()
+    {
+        self::echo('Comando [[#command]] funcionando');
+    }
+}

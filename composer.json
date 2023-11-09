@@ -10,23 +10,23 @@
     ],
     "autoload": {
         "psr-4": {
-            "": "class/"
+            "": "source/"
         },
         "files": [
-            "src/helper/constant/char_normalizer.php",
-            "src/helper/constant/is_terminal.php",
-            "src/helper/function/dbug.php",
-            "src/helper/function/env.php",
-            "src/helper/function/is.php",
-            "src/helper/function/jsonFile.php",
-            "src/helper/function/num.php",
-            "src/helper/function/path.php",
-            "src/helper/function/prepare.php",
-            "src/helper/function/remove_accents.php",
-            "src/helper/function/str.php",
-            "src/helper/script/env.php",
-            "src/helper/script/path.php",
-            "src/helper/script/error.php"
+            "helper/constant/char_normalizer.php",
+            "helper/constant/is_terminal.php",
+            "helper/function/dbug.php",
+            "helper/function/env.php",
+            "helper/function/is.php",
+            "helper/function/jsonFile.php",
+            "helper/function/num.php",
+            "helper/function/path.php",
+            "helper/function/prepare.php",
+            "helper/function/remove_accents.php",
+            "helper/function/str.php",
+            "helper/script/env.php",
+            "helper/script/error.php",
+            "helper/script/path.php"
         ]
     },
     "require": {

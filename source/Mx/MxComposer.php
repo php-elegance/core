@@ -1,11 +1,10 @@
 <?php
 
-// php mx composer
+namespace Mx;
 
 use Elegance\Core\Dir;
-use Elegance\Core\Terminal;
 
-return new class
+class MxComposer extends Mx
 {
     function __invoke()
     {
@@ -15,9 +14,9 @@ return new class
         $composer['autoload']['psr-4'] = $composer['autoload']['psr-4'] ?? [];
         $composer['autoload']['files'] = $composer['autoload']['files'] ?? [];
 
-        $composer['autoload']['psr-4'][''] = path('class/');
+        $composer['autoload']['psr-4'][''] = path('source/');
 
-        $autoImport = path('src/helper');
+        $autoImport = path('helper');
 
         $files = [];
 
@@ -31,27 +30,27 @@ return new class
 
         jsonFile('composer', $composer, false);
 
-        Terminal::echo('Arquivo [composer.json] atualizado');
+        self::echo('Arquivo [composer.json] atualizado');
 
         env('DEV') ? self::update() : self::install();
     }
 
     protected static function update()
     {
-        Terminal::echo('------------------------------------------------------------');
-        Terminal::echo('composer update');
-        Terminal::echo('------------------------------------------------------------');
+        self::echo('------------------------------------------------------------');
+        self::echo('composer update');
+        self::echo('------------------------------------------------------------');
         echo shell_exec("composer update");
-        Terminal::echo('------------------------------------------------------------');
+        self::echo('------------------------------------------------------------');
     }
 
     protected static function install()
     {
-        Terminal::echo('------------------------------------------------------------');
-        Terminal::echo('composer install --no-dev --optimize-autoloader');
-        Terminal::echo('------------------------------------------------------------');
+        self::echo('------------------------------------------------------------');
+        self::echo('composer install --no-dev --optimize-autoloader');
+        self::echo('------------------------------------------------------------');
         echo shell_exec("composer install --no-dev --optimize-autoloader");
-        Terminal::echo('------------------------------------------------------------');
+        self::echo('------------------------------------------------------------');
     }
 
     protected static function seek_for_file($ref)
@@ -67,4 +66,4 @@ return new class
 
         return $return;
     }
-};
+}
