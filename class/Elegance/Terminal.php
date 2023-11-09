@@ -26,10 +26,10 @@ abstract class Terminal
             $alias = Path::getAlias();
             $alias = array_keys($alias);
 
-            $path = path(strtolower("source/command/$command.php"));
+            $path = path(strtolower("src/command/$command.php"));
 
             while (!File::check($path) && count($alias))
-                $path = path(array_pop($alias), strtolower("source/command/$command.php"));
+                $path = path(array_pop($alias), strtolower("src/command/$command.php"));
 
             if (!File::check($path))
                 throw new Error("Comando [$command] não encontrado");

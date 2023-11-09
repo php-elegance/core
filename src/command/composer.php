@@ -17,7 +17,7 @@ return new class
 
         $composer['autoload']['psr-4'][''] = path('class/');
 
-        $autoImport = path('source/helper');
+        $autoImport = path('src/helper');
 
         $files = [];
 
@@ -33,13 +33,24 @@ return new class
 
         Terminal::echo('Arquivo [composer.json] atualizado');
 
-        self::update();
+        env('DEV') ? self::update() : self::install();
     }
 
     protected static function update()
     {
         Terminal::echo('------------------------------------------------------------');
+        Terminal::echo('composer update');
+        Terminal::echo('------------------------------------------------------------');
         echo shell_exec("composer update");
+        Terminal::echo('------------------------------------------------------------');
+    }
+
+    protected static function install()
+    {
+        Terminal::echo('------------------------------------------------------------');
+        Terminal::echo('composer install --no-dev --optimize-autoloader');
+        Terminal::echo('------------------------------------------------------------');
+        echo shell_exec("composer install --no-dev --optimize-autoloader");
         Terminal::echo('------------------------------------------------------------');
     }
 

@@ -13,20 +13,20 @@
             "": "class/"
         },
         "files": [
-            "source/helper/constant/char_normalizer.php",
-            "source/helper/constant/is_terminal.php",
-            "source/helper/function/dbug.php",
-            "source/helper/function/env.php",
-            "source/helper/function/is.php",
-            "source/helper/function/jsonFile.php",
-            "source/helper/function/num.php",
-            "source/helper/function/path.php",
-            "source/helper/function/prepare.php",
-            "source/helper/function/remove_accents.php",
-            "source/helper/function/str.php",
-            "source/helper/script/env.php",
-            "source/helper/script/path.php",
-            "source/helper/script/show_error.php"
+            "src/helper/constant/char_normalizer.php",
+            "src/helper/constant/is_terminal.php",
+            "src/helper/function/dbug.php",
+            "src/helper/function/env.php",
+            "src/helper/function/is.php",
+            "src/helper/function/jsonFile.php",
+            "src/helper/function/num.php",
+            "src/helper/function/path.php",
+            "src/helper/function/prepare.php",
+            "src/helper/function/remove_accents.php",
+            "src/helper/function/str.php",
+            "src/helper/script/env.php",
+            "src/helper/script/path.php",
+            "src/helper/script/show_error.php"
         ]
     },
     "require": {

@@ -5,5 +5,5 @@
 /.env
 /index.php
 
-/source/certificate/*
-!/source/certificate/base.crt
+/library/certificate/*
+!/library/certificate/base.crt

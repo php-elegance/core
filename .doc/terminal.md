@@ -35,7 +35,7 @@ Você pode criar uma comando automáticamente utilizando o comando **mx create.c
 
     php mx create.command [nome do comando]
 
-Isso vai criar um arquivo de comando dentro do diretório **source/command** de seu projeto
+Isso vai criar um arquivo de comando dentro do diretório **src/command** de seu projeto
 
 Para criar e testar um comando utilize as linhas abaixo no terminal
 

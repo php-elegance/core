@@ -100,11 +100,11 @@ abstract class Cif
             $certificate = env('CIF');
 
             if ($certificate) {
-                $certificate = path('source/certificate', $certificate);
+                $certificate = path('library/certificate', $certificate);
                 $certificate = File::setEx($certificate, 'crt');
                 $certificate = path($certificate);
             } else {
-                $certificate = path('#elegance-core/source/certificate/base.crt');
+                $certificate = path('#elegance-core/library/certificate/base.crt');
             }
 
             if (!File::check($certificate))

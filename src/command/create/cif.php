@@ -7,7 +7,7 @@ use Error;
 // php mx create.cif
 
 return function ($cifName) {
-    $file = path("source/certificate/$cifName");
+    $file = path("library/certificate/$cifName");
     $file = File::setEx($file, 'crt');
 
     if (File::check($file))

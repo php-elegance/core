@@ -25,7 +25,7 @@
 
     php cif.create nomeDoCertificado
 
-**create.command**: Cria um arquivo de comando em **source/command**
+**create.command**: Cria um arquivo de comando em **src/command**
 
     php mx create.command [command]
 
