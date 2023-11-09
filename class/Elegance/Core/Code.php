@@ -8,37 +8,10 @@ abstract class Code
     protected static string $posKey = '';
     protected static ?array $key = null;
 
-    protected static function load()
-    {
-        if (is_null(self::$key)) {
-            $baseChar = 'mxsiqjngplvouytwrh';
-            $stringKey = strtolower(env('CODE') ?? 'mx');
-
-            $stringKey = preg_replace("/[^$baseChar]/", '', $stringKey);
-
-            $stringKey = str_split($stringKey);
-
-            $key = '';
-
-            while (strlen($key) < 18 && count($stringKey)) {
-                $char = array_shift($stringKey);
-                if ($key == '' || strpos($key, $char) === false) {
-                    $key .= $char;
-                    $baseChar = str_replace($char, '', $baseChar);
-                }
-            }
-
-            $key = substr("$key$baseChar", 0, 18);
-            self::$preKey = substr($key, 0, 1);
-            self::$posKey = substr($key, 1, 1);
-            self::$key = str_split(substr($key, 2));
-        }
-    }
-
     /** Retorna o codigo de uma string */
     static function on(mixed $var): string
     {
-        self::load();
+        self::__load();
 
         if (!self::check($var)) {
             if (!is_md5($var))
@@ -55,7 +28,7 @@ abstract class Code
     /** Retonra o MD5 usado para gerar uma string codificada */
     static function off(mixed $var): string
     {
-        self::load();
+        self::__load();
 
         if (!self::check($var))
             return self::off(self::on($var));
@@ -70,7 +43,7 @@ abstract class Code
     /** Verifica se uma variavel é uma string codificada */
     static function check(mixed $var): bool
     {
-        self::load();
+        self::__load();
 
         if (func_num_args() > 1) {
             $check = true;
@@ -99,5 +72,35 @@ abstract class Code
             $result = boolval(self::off($initial) == self::off(array_shift($compare)));
 
         return $result;
+    }
+
+    protected static function __load()
+    {
+        if (is_null(self::$key))
+            self::loadKey(env('CODE') ?? 'mx');
+    }
+
+    private static function loadKey($stringKey)
+    {
+        $baseChar = 'mxsiqjngplvouytwrh';
+
+        $stringKey = preg_replace("/[^$baseChar]/", '', $stringKey);
+
+        $stringKey = str_split($stringKey);
+
+        $key = '';
+
+        while (strlen($key) < 18 && count($stringKey)) {
+            $char = array_shift($stringKey);
+            if ($key == '' || strpos($key, $char) === false) {
+                $key .= $char;
+                $baseChar = str_replace($char, '', $baseChar);
+            }
+        }
+
+        $key = substr("$key$baseChar", 0, 18);
+        self::$preKey = substr($key, 0, 1);
+        self::$posKey = substr($key, 1, 1);
+        self::$key = str_split(substr($key, 2));
     }
 }

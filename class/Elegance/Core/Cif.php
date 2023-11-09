@@ -15,7 +15,7 @@ abstract class Cif
     /** Retorna a cifra de uma variavel */
     static function on(mixed $var, ?string $charKey = null): string
     {
-        self::loadCtfFile();
+        self::__load();
 
         if (
             is_string($var)
@@ -93,32 +93,6 @@ abstract class Cif
         return $result;
     }
 
-    /** Carrega o arquivo de certificado do projeto */
-    protected static function loadCtfFile()
-    {
-        if (is_null(self::$cif)) {
-            $certificate = env('CIF');
-
-            if ($certificate) {
-                $certificate = path('library/certificate', $certificate);
-                $certificate = File::setEx($certificate, 'crt');
-                $certificate = path($certificate);
-            } else {
-                $certificate = path('#elegance-core/library/certificate/base.crt');
-            }
-
-            if (!File::check($certificate))
-                throw new Error("Impossivel localizar o arquivo de certificado [$certificate].");
-
-            $content = Import::content($certificate);
-            $content = str_replace([" ", "\t", "\n", "\r", "\0", "\x0B"], '', $content);
-            $cif = str_split($content, 62);
-
-            self::$ensure = str_split(array_pop($cif));
-            self::$cif = $cif;
-        }
-    }
-
     /** Realiza o replace interno de uma string */
     protected static function replace(string $string, string $in, string $out): string
     {
@@ -132,7 +106,7 @@ abstract class Cif
     /** Retorna o id que deve ser utilizado */
     protected static function getUseIdKey(?string $charKey): int
     {
-        self::loadCtfFile();
+        self::__load();
 
         self::$currentIdKey = self::$currentIdKey ?? random_int(0, 61);
 
@@ -155,5 +129,37 @@ abstract class Cif
     {
         $idCharKeyStart = self::getUseIdKey(substr($string, 0, 1));
         return self::getEncapsChar($idCharKeyStart, true) == substr($string, -1, 1);
+    }
+
+    /** Carrega o arquivo de certificado do projeto */
+    protected static function __load()
+    {
+        if (is_null(self::$cif)) {
+            $path = env('CIF');
+
+            if ($path) {
+                $path = path('library/certificate', $path);
+                $path = File::setEx($path, 'crt');
+                $path = path($path);
+            } else {
+                $path = path('#elegance-core/library/certificate/base.crt');
+            }
+
+            self::loadFileCif($path);
+        }
+    }
+
+    /** Carrega a classe com um arquivo de certificado */
+    private static function loadFileCif(string $path)
+    {
+        if (!File::check($path))
+            throw new Error("Cif file [$path] not found.");
+
+        $content = Import::content($path);
+        $content = str_replace([" ", "\t", "\n", "\r", "\0", "\x0B"], '', $content);
+        $cif = str_split($content, 62);
+
+        self::$ensure = str_split(array_pop($cif));
+        self::$cif = $cif;
     }
 }

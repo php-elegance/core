@@ -11,7 +11,7 @@ return function ($cifName) {
     $file = File::setEx($file, 'crt');
 
     if (File::check($file))
-        throw new Error("Certificado [$cifName] já existe");
+        throw new Error("Cif file [$cifName] already exists");
 
     $allowChar = Cif::BASE;
 

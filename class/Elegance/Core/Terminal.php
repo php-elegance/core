@@ -32,12 +32,12 @@ abstract class Terminal
                 $path = path(array_pop($alias), strtolower("src/command/$command.php"));
 
             if (!File::check($path))
-                throw new Error("Comando [$command] não encontrado");
+                throw new Error("Command [$command] not found");
 
             $action = Import::return($path);
 
             if (!is_closure($action))
-                throw new Error("Impossivel executar comando [$command]");
+                throw new Error("Impossible execute command [$command]");
 
             $reflection = $action instanceof Closure ? new ReflectionFunction($action) : new ReflectionMethod($action, '__invoke');
             $countParams = count($params);
