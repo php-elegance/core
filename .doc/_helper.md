@@ -47,10 +47,6 @@
 
     DEV = false
 
-**SHOW_ERROR**: Informa se o PHP deve mostrar os erros
-
-    SHOW_ERROR = false
-
 ## Constant
 
  - **IS_TERMINAL**: Se a requisição foi feita via terminal

@@ -26,7 +26,7 @@
             "src/helper/function/str.php",
             "src/helper/script/env.php",
             "src/helper/script/path.php",
-            "src/helper/script/show_error.php"
+            "src/helper/script/error.php"
         ]
     },
     "require": {
