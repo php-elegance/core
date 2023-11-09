@@ -7,7 +7,7 @@ require "./vendor/autoload.php";
 echo "---< MX-CMD >---\n\n";
 
 array_shift($argv);
-\Elegance\Terminal::run(implode(' ', $argv));
+\Elegance\Core\Terminal::run(implode(' ', $argv));
 
 echo "\n---< MX-CMD >---\n";
 
