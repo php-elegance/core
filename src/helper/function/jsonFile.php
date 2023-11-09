@@ -1,7 +1,7 @@
 <?php
 
-use Elegance\File;
-use Elegance\Import;
+use Elegance\Core\File;
+use Elegance\Core\Import;
 
 if (!function_exists('jsonFile')) {
 

@@ -1,6 +1,6 @@
 <?php
 
-use Elegance\Path;
+use Elegance\Core\Path;
 
 if (!function_exists('path')) {
 

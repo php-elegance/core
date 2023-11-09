@@ -22,7 +22,7 @@ Para utilizar este certificado em seu projeto, adicione a linha em seu .env
 
 > A classe estatica sempre usa o certificado definido nas variaveis de ambiente
 
-    use Elegance\Cif;
+    use Elegance\Core\Cif;
 
 Retorna a cifra de uma string
 

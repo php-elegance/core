@@ -2,7 +2,7 @@
 
 Gerencia referencia para diretórios
 
-    use Elegance\Path;
+    use Elegance\Core\Path;
 
 ---
 

@@ -2,7 +2,7 @@
 
 Carrega variaves de arquivos **.env** e **.conf**
 
-    use Elegance\Env;
+    use Elegance\Core\Env;
 
 Uma variavel de ambiente pode ser recuperada utilizando a helper **env**
 

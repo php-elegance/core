@@ -2,7 +2,7 @@
 
 Importa arquivos retornando conteúdo
 
-    use Elegance\Import;
+    use Elegance\Core\Import;
 
 ---
 

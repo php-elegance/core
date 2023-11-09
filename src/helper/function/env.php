@@ -1,6 +1,6 @@
 <?php
 
-use Elegance\Env;
+use Elegance\Core\Env;
 
 if (!function_exists('env')) {
 

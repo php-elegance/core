@@ -2,7 +2,7 @@
 
 Manipula diretórios representados por referencias
 
-    use Elegance\Dir;
+    use Elegance\Core\Dir;
 
 ---
 

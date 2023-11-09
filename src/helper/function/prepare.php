@@ -1,6 +1,6 @@
 <?php
 
-use Elegance\Prepare;
+use Elegance\Core\Prepare;
 
 if (!function_exists('prepare')) {
 

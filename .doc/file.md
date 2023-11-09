@@ -2,7 +2,7 @@
 
 Manipula arquivos representados por referencias
 
-    use Elegance\File;
+    use Elegance\Core\File;
 
 ---
 

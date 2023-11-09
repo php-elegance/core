@@ -2,7 +2,7 @@
 
 Captura e compara mimetypes de arquivos
 
-    use Elegance\Mime;
+    use Elegance\Core\Mime;
 
 ---
 

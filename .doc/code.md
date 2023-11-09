@@ -15,7 +15,7 @@ Para altear a chave de codificação, adicione a linha em seu .env
 
 > A classe estatica sempre usa a chave definida nas variaveis de ambiente
 
-    use Elegance\Code;
+    use Elegance\Core\Code;
 
 Retorna o codigo de uma string
 

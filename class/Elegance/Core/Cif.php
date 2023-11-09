@@ -1,6 +1,6 @@
 <?php
 
-namespace Elegance;
+namespace Elegance\Core;
 
 use Error;
 
