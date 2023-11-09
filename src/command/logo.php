@@ -1,8 +1,7 @@
 <?php
-
-namespace Elegance\Core;
-
 // php mx logo
+
+use Elegance\Core\Terminal;
 
 return new class
 {

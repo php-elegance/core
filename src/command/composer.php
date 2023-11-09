@@ -1,9 +1,9 @@
 <?php
 
-namespace Elegance\Core;
-
 // php mx composer
 
+use Elegance\Core\Dir;
+use Elegance\Core\Terminal;
 
 return new class
 {

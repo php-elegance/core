@@ -1,10 +1,10 @@
 <?php
 
-namespace Elegance\Core;
-
-use Error;
-
 // php mx create.cif
+
+use Elegance\Core\Cif;
+use Elegance\Core\File;
+use Elegance\Core\Terminal;
 
 return function ($cifName) {
     $file = path("library/certificate/$cifName");
