@@ -119,7 +119,7 @@
 
     is_base64(mixed $var): bool
 
-**is_httpStatus**: Verifica se uma variavel corresponde a um status HTTP
+**is_httpStatus**: Verifica se uma variavel corresponde a um status HTTP (100~599)
 
     is_httpStatus($var): bool
 

@@ -145,13 +145,10 @@ if (!function_exists('is_base64')) {
 
 if (!function_exists('is_httpStatus')) {
 
-    /** Verifica se uma variavel corresponde a um status HTTP */
+    /** Verifica se uma variavel corresponde a um status HTTP (100~599) */
     function is_httpStatus($var): bool
     {
-        return  is_numeric($var) && match (intval($var)) {
-            200, 201, 204, 303, 400, 401, 403, 404, 405, 500, 501, 503 => true,
-            default => false
-        };
+        return is_numeric($var) && $var >= 100 && $var <= 599;
     }
 }
 if (!function_exists('is_serialized')) {
