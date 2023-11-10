@@ -23,7 +23,7 @@ abstract class Mx
             $class = implode('', $class);
             $class = "\\Mx\\Mx$class";
 
-            if (!class_exists($class) || !is_class($class, static::class))
+            if (!class_exists($class) || !is_class($class, Mx::class))
                 throw new Exception("Command [$command] not found");
 
             $instance = new $class;
